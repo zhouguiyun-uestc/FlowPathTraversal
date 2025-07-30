@@ -68,6 +68,7 @@ int main(int argc, char* argv[])
 			TimeSpan span;
 			Grid<FlowDir> dirGrid = readRaster<FlowDir>(inputPath);
 			Grid<int> wsGrid(dirGrid);
+			wsGrid.setNoDataValue(0);
 			wsGrid.allocate();
 			auto key2Cell = WatershedFastForOutletFiles(dirGrid, wsGrid);
 			auto stats = computeStats(wsGrid, 255);
@@ -83,6 +84,7 @@ int main(int argc, char* argv[])
 
 			TimeSpan span;
 			Grid<int> wsGrid(dirGrid);
+			wsGrid.setNoDataValue(0);
 			wsGrid.allocate();
 			
 			cout << "Output grid is allocated!"<< endl;
