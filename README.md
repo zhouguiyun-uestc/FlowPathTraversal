@@ -18,17 +18,32 @@ The program provides a set of different methods.
 FastWatershed [Method] other_parameters
 
 The supported methods include:
-"flowdirection": compute flow direction grid from input DEM file
-           Example usage: FastFlow flowdirection dem.tif flowdir.tif
-"compare": detertimine whether two int32 grids are identical or not
-           Example usage: FastFlow compare watershed1.tif watershed2.tif
-"generateOutlets": calculate outlet files containing up to outlets of 255 biggest watersheds 
-           Example usage: FastFlow generateOutlets flowdir.tif outlets.txt
-           
 
-Description:
-The algorithm supports parallel execution on multicore processors, making it suitable for high-resolution and large-scale DEM datasets.
-Full technical details and performance evaluation are provided in the manuscript.
+"flowdirection": compute flow direction grid from input DEM file
+           Example usage: FastFlow flowdirection dem.tif flowdir.tif           
+
+"compare": detertimine whether two int32 grids are identical or not
+           Example usage: FastFlow compare watershed1.tif watershed2.tif           
+
+"generateOutlets": calculate outlet files containing up to outlets of 255 biggest watersheds. The output outlet file contains 1-based row, col and label of each outlet.
+           Example usage: FastFlow generateOutlets flowdir.tif outlets.txt
+"FlowPathTraversal": use our proposed flow path traversal algorithm to calculate watershed. 
+           Example usage 1: FastFlow FlowPathTraversal flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
+           Example usage 2: FastFlow FlowPathTraversal flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds           
+"FlowPathTraversalOpenMP": use our proposed OpenMP-based parallel flow path traversal algorithm to delineate watersheds. 
+           Example usage 1: FastFlow FlowPathTraversalOpenMP flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
+           Example usage 2: FastFlow FlowPathTraversalOpenMP flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds     
+"RegionGrowing": use region growing method to delineate watersheds
+           Example usage 1: FastFlow RegionGrowing flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
+           Example usage 2: FastFlow RegionGrowing flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds           
+"Recursive": use recursive method to delineate watersheds
+           Example usage 1: FastFlow Recursive flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
+           Example usage 2: FastFlow Recursive flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds           
+       
+By default, the processed grids should contain cells no more than the maximum value hold in an unsigned int32 (which is 4294967295). 
+If large grids need to processed, please define the macro _MASSIVE_DATASET_ in grid.h to enable correct indexing of the cells. 
+
+Detailed descriptions of the watershed delineation algorithms are provided in the manuscript. Please refer to the code for more details on its uages
 
 Test Data:
 Test DEM data used in the manuscript can be downloaded from:
