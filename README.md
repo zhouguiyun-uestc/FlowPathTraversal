@@ -46,7 +46,7 @@ Example usage: FastFlow flowdirection dem.tif flowdir.tif
        
 **Important Notice:**
 <p>By default, the processed grids should contain cells no more than the maximum value hold in an unsigned int32 (which is 4294967295). 
-If large grids need to processed, please define the macro _MASSIVE_DATASET_ in grid.h to enable correct indexing of the cells. 
+If larger grids need to processed, please define the macro _MASSIVE_DATASET_ in grid.h to enable correct indexing of the cells. 
 </p>
 
 Detailed descriptions of the watershed delineation algorithms are provided in the manuscript. Please refer to the code for more details on its uages
