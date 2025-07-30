@@ -20,22 +20,26 @@ FastWatershed [Method] other_parameters
 The supported methods include:
 
 "flowdirection": compute flow direction grid from input DEM file
-           Example usage: FastFlow flowdirection dem.tif flowdir.tif           
+Example usage: FastFlow flowdirection dem.tif flowdir.tif           
 
 "compare": detertimine whether two int32 grids are identical or not
            Example usage: FastFlow compare watershed1.tif watershed2.tif           
 
 "generateOutlets": calculate outlet files containing up to outlets of 255 biggest watersheds. The output outlet file contains 1-based row, col and label of each outlet.
            Example usage: FastFlow generateOutlets flowdir.tif outlets.txt
+           
 "FlowPathTraversal": use our proposed flow path traversal algorithm to calculate watershed. 
            Example usage 1: FastFlow FlowPathTraversal flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
-           Example usage 2: FastFlow FlowPathTraversal flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds           
+           Example usage 2: FastFlow FlowPathTraversal flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds       
+           
 "FlowPathTraversalOpenMP": use our proposed OpenMP-based parallel flow path traversal algorithm to delineate watersheds. 
            Example usage 1: FastFlow FlowPathTraversalOpenMP flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
-           Example usage 2: FastFlow FlowPathTraversalOpenMP flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds     
+           Example usage 2: FastFlow FlowPathTraversalOpenMP flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds 
+           
 "RegionGrowing": use region growing method to delineate watersheds
            Example usage 1: FastFlow RegionGrowing flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
-           Example usage 2: FastFlow RegionGrowing flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds           
+           Example usage 2: FastFlow RegionGrowing flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds 
+           
 "Recursive": use recursive method to delineate watersheds
            Example usage 1: FastFlow Recursive flowdir.tif watershed.tif   //automatically calculate all draining outlets and delineate watersheds
            Example usage 2: FastFlow Recursive flowdir.tif outlets.txt watershed.tif  //use the specified outlet file to delineate watersheds           
