@@ -4,21 +4,27 @@ An Efficient Flow Path Traversal Algorithm for Watershed Delineation from Raster
 Authors:
 Guiyun Zhou, Zihao Zhang, Suhua Fu, Jiayuan Lin
 
-Corresponding Author:
+Corresponding author:
 Guiyun Zhou (zhouguiyun@uestc.edu.cn)
 
 This repository contains the source code for the FlowPathTraversal algorithm proposed in the manuscript above. The algorithm is designed for efficient flow path traversal and watershed delineation from raster Digital Elevation Models (DEMs), with a focus on performance in multicore computing environments. All experiments and evaluations presented in the manuscript were conducted using this code.
 
 The program can be compiled and executed on both Windows and Linux platforms.
 
-FlowPathTraversal supports floating-point GeoTIFF DEM files via the GDAL library. Please make sure the GDAL library is properly linked during compilation. GDAL version 1.91 was used in our experiments.
+FlowPathTraversal processes GeoTIFF files via the GDAL library. Please make sure the GDAL library is properly linked during compilation. 
 
 Usage:
-The algorithm can be run using the following command-line syntax:
-FastWatershed Method Input_DEM_flow (optional:Input_DEM_flow_outlets) output_DEM_watershed
+The program provides a set of different methods. 
+FastWatershed [Method] other_parameters
 
-Example:
-FastWatershed FlowPathTraversal dem_flow.tif (dem_outlets.txt) dem_ws.tif
+The supported methods include:
+"flowdirection": compute flow direction grid from input DEM file
+           Example usage: FastFlow flowdirection dem.tif flowdir.tif
+"compare": detertimine whether two int32 grids are identical or not
+           Example usage: FastFlow compare watershed1.tif watershed2.tif
+"generateOutlets": calculate outlet files containing up to outlets of 255 biggest watersheds 
+           Example usage: FastFlow generateOutlets flowdir.tif outlets.txt
+           
 
 Description:
 The algorithm supports parallel execution on multicore processors, making it suitable for high-resolution and large-scale DEM datasets.
