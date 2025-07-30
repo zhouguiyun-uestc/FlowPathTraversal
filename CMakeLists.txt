@@ -1,13 +1,5 @@
 ﻿cmake_minimum_required (VERSION 3.20)
 
-if( NOT WIN32)
-	set(CMAKE_CUDA_ARCHITECTURES 86)
-	set(CMAKE_CUDA_COMPILER "/usr/local/cuda-12.8/bin/nvcc")
-	set (CMAKE_C_COMPILER "/usr/bin/gcc")
-	set (CMAKE_CXX_COMPILER "/usr/bin/g++")
-	set(CMAKE_VERBOSE_MAKEFILE ON)
-endif()
-
 set(CMAKE_CUDA_ARCHITECTURES 86)
 
 project (FastWatershed  LANGUAGES CXX )
