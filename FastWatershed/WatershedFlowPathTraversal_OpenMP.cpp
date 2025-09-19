@@ -33,9 +33,8 @@ void WatershedFlowPathTraversal_OpenMP(Grid<FlowDir>& dirGrid, Grid<int>& wsGrid
 				if (!dirGrid.isNoData(c))
 				{
 					if (!moveToDownstreamCell(dirGrid, c)) {
-						wsGrid(c) = wsIndex;
-						#pragma omp atomic
-						wsIndex++;
+						#pragma omp atomic capture
+						wsGrid(c) = wsIndex++;
 					}
 				}
 			}
@@ -93,4 +92,5 @@ void WatershedFlowPathTraversal_OpenMP(Grid<FlowDir>& dirGrid, Grid<int>& wsGrid
 			}
 	}
 }
+
 
